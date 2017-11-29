@@ -13,14 +13,24 @@ import java.io.*;
  * @author agonzalez
  */
 public class OrderProcessor {
+private File inputfile;
+private File outputfile;
 
-    public OrderProcessor(File file1, File file2) {   
-    try{
-        InputStream in = new FileInputStream(file1);
-        OutputStream out = new FileOutputStream(file2);
-    }   catch (FileNotFoundException ex) {
-            System.out.println("Couldn't open files.");
-        }
+    public OrderProcessor() {
+        inputfile = new File("Orders.txt");
+        outputfile = new File("ProcessedOrder.txt");
+    }
+
+
+    public OrderProcessor(File input, File output) throws IOException {   
+        inputfile = input;
+        outputfile = output;
+        
+    }
+    
+    public void MakeOrder(){
+        System.out.println("Processing order");
+        
     }
     
     
