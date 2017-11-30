@@ -7,6 +7,7 @@ package javaorderprocessing;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,18 +34,14 @@ private ArrayList<String> Order = new ArrayList<>();
     }
     
     public void MakeOrder() {
-        System.out.println("Processing order");
-        
-        //BufferedWriter writer = new BufferedWriter(new FileWriter(outputfile));
-                
-        
+        System.out.println("Processing order");        
         
         try(BufferedReader br = new BufferedReader(new FileReader(inputfile)))
         {
-            for (int i=0; i < br.toString().length(); i++)
+            br.readLine();
+            for (int i=0; i < br.read(); i++)
             {
                 Order.add(br.readLine());
-                
             }
         }
         catch (IOException ex) {
