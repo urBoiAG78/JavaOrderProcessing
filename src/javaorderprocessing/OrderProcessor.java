@@ -13,8 +13,8 @@ import java.io.*;
  * @author agonzalez
  */
 public class OrderProcessor {
-private File inputfile;
-private File outputfile;
+private final File inputfile;
+private final File outputfile;
 
     public OrderProcessor() {
         inputfile = new File("Orders.txt");
@@ -28,8 +28,21 @@ private File outputfile;
         
     }
     
-    public void MakeOrder(){
+    public void MakeOrder() throws IOException {
         System.out.println("Processing order");
+        
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outputfile));
+        
+        try(BufferedReader br = new BufferedReader(new FileReader(inputfile)))
+        {
+            for (int i=0; i < br.toString().length(); i++)
+            {
+                writer.write(br.readLine());
+            }
+        }
+        catch (IOException ex) {
+            System.out.println("There was a problem reading the file.");
+    }
         
     }
     
