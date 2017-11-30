@@ -6,6 +6,9 @@
 package javaorderprocessing;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -15,6 +18,7 @@ import java.io.*;
 public class OrderProcessor {
 private final File inputfile;
 private final File outputfile;
+private ArrayList<String> Order = new ArrayList<>();
 
     public OrderProcessor() {
         inputfile = new File("Orders.txt");
@@ -28,22 +32,34 @@ private final File outputfile;
         
     }
     
-    public void MakeOrder() throws IOException {
+    public void MakeOrder() {
         System.out.println("Processing order");
         
-        BufferedWriter writer = new BufferedWriter(new FileWriter(outputfile));
+        //BufferedWriter writer = new BufferedWriter(new FileWriter(outputfile));
+                
+        
         
         try(BufferedReader br = new BufferedReader(new FileReader(inputfile)))
         {
             for (int i=0; i < br.toString().length(); i++)
             {
-                writer.write(br.readLine());
+                Order.add(br.readLine());
+                
             }
         }
         catch (IOException ex) {
             System.out.println("There was a problem reading the file.");
     }
-        
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(outputfile)))
+        {
+            for(String words: Order){
+                writer.write((words + "\n"));
+            }
+        } 
+        catch (IOException ex) {
+            System.out.println("");
+    }
+        System.out.println("Finish Order");
     }
     
     

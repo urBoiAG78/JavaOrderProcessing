@@ -5,6 +5,7 @@
  */
 package javaorderprocessing;
 
+
 /**
  *
  * @author agonzalez
@@ -16,6 +17,11 @@ public class JavaOrderProcessing {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        OrderProcessor op = new OrderProcessor ();
+        
+            op.MakeOrder();
+        
+        
     }
     
 }
