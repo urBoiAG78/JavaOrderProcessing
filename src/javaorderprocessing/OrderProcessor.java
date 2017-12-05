@@ -45,6 +45,9 @@ private String OrderList[];
                 System.out.println("Price: " + OrderList[2]);
                 System.out.println("Quantity: " + OrderList[3]);
                 System.out.println("Tax: " + GenerateTax(OrderList[2],OrderList[3]));
+                System.out.println("Shipping: " + GenerateShipping(OrderList[2], OrderList[3]));
+                System.out.println("Total: " + Total());
+                System.out.println("------------");
                 
                 
             }
@@ -59,5 +62,17 @@ private String OrderList[];
         double d1 = Double.parseDouble(s1);
         double d2 = Double.parseDouble(s2);
         double taxNum = (d1*d2) * 0.02;
+        return taxNum;
+    }
+    public double GenerateShipping(String s1, String s2){
+        double d1 = Double.parseDouble(s1);
+        double d2 = Double.parseDouble(s2);
+        double shipping = (d1*d2) * 0.07; 
+        return shipping;
+    }
+    public double Total(){
+        double subtotal = Double.parseDouble(OrderList[2]) * Double.parseDouble(OrderList[3]);
+        double total = subtotal + GenerateTax(OrderList[2],OrderList[3]) + GenerateShipping(OrderList[2],OrderList[3]);
+        return total;
     }
 }
