@@ -6,10 +6,8 @@
 package javaorderprocessing;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+
 
 
 /**
@@ -19,7 +17,7 @@ import java.util.logging.Logger;
 public class OrderProcessor {
 private final File inputfile;
 private final File outputfile;
-private ArrayList<String> Order = new ArrayList<>();
+private String OrderList[];
 
     public OrderProcessor() {
         inputfile = new File("Orders.txt");
@@ -41,23 +39,25 @@ private ArrayList<String> Order = new ArrayList<>();
             br.readLine();
             for (int i=0; i < br.read(); i++)
             {
-                Order.add(br.readLine());
+                OrderList=br.readLine().split("\\|");
+                System.out.println("Order ID: " + OrderList[0]);
+                System.out.println("Part Number: " + OrderList[1]);
+                System.out.println("Price: " + OrderList[2]);
+                System.out.println("Quantity: " + OrderList[3]);
+                System.out.println("Tax: " + GenerateTax(OrderList[2],OrderList[3]));
+                
+                
             }
         }
         catch (IOException ex) {
-            System.out.println("There was a problem reading the file.");
+            System.out.println("There was a problem reading the file.");     
     }
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(outputfile)))
-        {
-            for(String words: Order){
-                writer.write((words + "\n"));
-            }
-        } 
-        catch (IOException ex) {
-            System.out.println("");
-    }
-        System.out.println("Finish Order");
-    }
+    System.out.println("Finish Order");
     
-    
+}
+    public double GenerateTax(String s1, String s2){
+        double d1 = Double.parseDouble(s1);
+        double d2 = Double.parseDouble(s2);
+        double taxNum = (d1*d2) * 0.02;
+    }
 }
