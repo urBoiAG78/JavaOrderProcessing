@@ -36,10 +36,12 @@ private String OrderList[];
         
         try(BufferedReader br = new BufferedReader(new FileReader(inputfile)))
         {
+            BufferedWriter filewriter = new BufferedWriter(new FileWriter(outputfile));
             br.readLine();
-            for (int i=0; i < br.read(); i++)
+            for (int i=0; true; i++)
             {
-                OrderList=br.readLine().split("\\|");
+                if(br.ready()){
+                OrderList=br.readLine().split("\\|"); 
                 System.out.println("Order ID: " + OrderList[0]);
                 System.out.println("Part Number: " + OrderList[1]);
                 System.out.println("Price: " + OrderList[2]);
@@ -48,9 +50,29 @@ private String OrderList[];
                 System.out.println("Shipping: " + GenerateShipping(OrderList[2], OrderList[3]));
                 System.out.println("Total: " + Total());
                 System.out.println("------------");
-                
-                
+                //this part writes the file
+                filewriter.write("Order ID: " + OrderList[0]);
+                filewriter.write("\n");
+                filewriter.write("Part Number: " + OrderList[1]);       
+                filewriter.write("\n");      
+                filewriter.write("Price: " + OrderList[2]);        
+                filewriter.write("\n");        
+                filewriter.write("Quantity: " + OrderList[3]);        
+                filewriter.write("\n");     
+                filewriter.write("Tax: " + GenerateTax(OrderList[2],OrderList[3]));        
+                filewriter.write("\n");       
+                filewriter.write("Shipping: " + GenerateShipping(OrderList[2], OrderList[3]));        
+                filewriter.write("\n");        
+                filewriter.write("Total: " + Total());
+                filewriter.write("\n");
+                filewriter.write("---------------");
+                }
+                else
+                {
+                    break;
+                }
             }
+            filewriter.close();
         }
         catch (IOException ex) {
             System.out.println("There was a problem reading the file.");     
@@ -76,3 +98,5 @@ private String OrderList[];
         return total;
     }
 }
+
+    
