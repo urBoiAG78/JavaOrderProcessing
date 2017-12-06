@@ -66,15 +66,17 @@ private String OrderList[];
                 filewriter.write("Total: " + Total());
                 filewriter.write("\n");
                 filewriter.write("---------------");
+                filewriter.write("\n");
                 }
                 else
                 {
-                    break;
+                break; 
                 }
             }
             filewriter.close();
         }
-        catch (IOException ex) {
+        catch (IOException ex) 
+        {
             System.out.println("There was a problem reading the file.");     
     }
     System.out.println("Finish Order");
