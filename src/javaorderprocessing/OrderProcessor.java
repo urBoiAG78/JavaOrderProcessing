@@ -25,7 +25,7 @@ private String OrderList[];
     }
 
 
-    public OrderProcessor(File input, File output) throws IOException {   
+    public OrderProcessor(File input, File output) {   
         inputfile = input;
         outputfile = output;
         

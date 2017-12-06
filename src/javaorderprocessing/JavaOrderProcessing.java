@@ -5,6 +5,9 @@
  */
 package javaorderprocessing;
 
+import java.io.File;
+
+
 
 /**
  *
@@ -15,12 +18,12 @@ public class JavaOrderProcessing {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args){
         // TODO code application logic here
-        OrderProcessor op = new OrderProcessor ();
+        File input = new File("Orders.txt");
+        File output = new File("OrdersProcessed.txt");
+        OrderProcessor op = new OrderProcessor(input, output);
         op.MakeOrder();
-        
-        
     }
     
 }
